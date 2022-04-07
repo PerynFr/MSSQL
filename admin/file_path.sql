@@ -16,3 +16,9 @@ SELECT  @@Servername AS Server ,
         Growth
 FROM    sys.database_files
 ORDER BY File_id; 
+
+
+-- имя и пути текущей базы
+SELECT name, physical_name AS CurrentLocation, state_desc  
+FROM sys.master_files  
+WHERE database_id = DB_ID();
