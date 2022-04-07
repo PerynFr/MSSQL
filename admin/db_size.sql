@@ -1,5 +1,9 @@
 sp_helpdb;
 go
+sp_helplog
+go
+--свободное место на дисках
+xp_fixeddrives 
 
 --посмотреть занимаемое пространство базами по дискам
 select SUBSTRING(physical_name,0,2), SUM(size * 8.0 / 1024) as [Size, Mb]
