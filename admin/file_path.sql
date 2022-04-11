@@ -12,10 +12,11 @@ SELECT  @@Servername AS Server ,
         LEFT(Physical_Name, 1) AS Drive ,
         Physical_Name ,
         RIGHT(physical_name, 3) AS Ext ,
-        Size ,
+        cast(Size/128 as nvarchar(10))  + ' mb' ,
         Growth
 FROM    sys.database_files
 ORDER BY File_id; 
+go
 
 
 -- имя и пути текущей базы
