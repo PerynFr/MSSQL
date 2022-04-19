@@ -1,4 +1,5 @@
-USE msdb GO
+USE msdb; 
+GO
 SELECT bs.database_name,
        bs.backup_start_date,
        bs.backup_finish_date,
