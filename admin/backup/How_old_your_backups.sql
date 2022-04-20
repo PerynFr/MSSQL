@@ -7,8 +7,8 @@ WITH full_backups AS
           BS.type AS backup_type,
           BS.backup_finish_date,
           D.recovery_model_desc
-   FROM master.sys.databases AS D
-   LEFT JOIN msdb.dbo.[backupset] AS BS ON D.name = BS.database_name /* FILTERING OPTIONS*/ --WHERE BS.[type] = '<backup_type,,D>'
+   FROM master.sys.databases AS D WITH(NOLOCK)
+   LEFT JOIN msdb.dbo.[backupset] AS BS WITH(NOLOCK) ON D.name = BS.database_name /* FILTERING OPTIONS*/ --WHERE BS.[type] = '<backup_type,,D>'
 --WHERE BS.[name] = '<database_name,,Foo_DB>'
 )
 SELECT FB.database_name,
@@ -23,8 +23,8 @@ SELECT FB.database_name,
        DATEDIFF(HOUR, FB.backup_finish_date, GETDATE()) AS backup_hours,
        DATEDIFF(MINUTE, FB.backup_finish_date, GETDATE()) AS backup_minutes
 FROM full_backups FB
-LEFT JOIN msdb.dbo.[backupset] BS ON FB.backup_set_id = BS.backup_set_id
-LEFT JOIN msdb.dbo.backupmediafamily BMF ON BS.media_set_id = BMF.media_set_id
+LEFT JOIN msdb.dbo.[backupset] BS WITH(NOLOCK) ON FB.backup_set_id = BS.backup_set_id
+LEFT JOIN msdb.dbo.backupmediafamily BMF WITH(NOLOCK) ON BS.media_set_id = BMF.media_set_id
 WHERE FB.[Row Number] = 1
 ORDER BY FB.database_name,
          FB.backup_finish_date DESC
