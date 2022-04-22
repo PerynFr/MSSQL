@@ -1,3 +1,4 @@
+-- sp_helprestore2 dbname
 -----------------------------------
 WITH full_backups AS
   (SELECT ROW_NUMBER() OVER(PARTITION BY BS.database_name, BS.type
