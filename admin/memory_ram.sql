@@ -1,3 +1,8 @@
+
+SELECT 'max connections = ' + cast(@@MAX_CONNECTIONS AS varchar(20)) 
+	+ ' curent connctions = ' + cast(@@connections AS varchar(20))
+
+
 SELECT CASE
            WHEN serverproperty('IsClustered')=1 THEN serverproperty('ComputerNamePhysicalNetBIOS')
            ELSE 'not clustered'
