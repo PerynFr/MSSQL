@@ -7,7 +7,7 @@ DROP DATABASE [DBName]
 GO
 
   
----удалить буду и файлы  
+---удалить базу и файлы  
 USE [master]
 GO
 ALTER DATABASE [DBName] set single_user with rollback immediate;
