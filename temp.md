@@ -43,3 +43,5 @@ ssh -v git@github.com -p 443
     PreferredAuthentications publickey
     IdentityFile ~/.ssh/id_rsa
     Port 443
+  
+  https://codengineering.ru/q/git-ssh-error-connect-to-host-bad-file-number-21033
