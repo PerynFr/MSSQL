@@ -45,3 +45,6 @@ ssh -v git@github.com -p 443
     Port 443
   
   https://codengineering.ru/q/git-ssh-error-connect-to-host-bad-file-number-21033
+
+  
+  https://community.atlassian.com/t5/Sourcetree-articles/Bug-Fix-Sourcetree-for-Windows-authentication-error-when/ba-p/1965968
