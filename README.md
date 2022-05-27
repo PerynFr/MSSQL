@@ -14,3 +14,12 @@ https://www.mssqltips.com/sqlservertip/1590/understanding-and-dealing-with-orpha
   
 история запросов  
 https://stackoverflow.com/questions/5299669/how-to-see-query-history-in-sql-server-management-studio
+
+
+Работа с git  
+настраиваем notepad вместо Vim  
+https://stackoverflow.com/questions/13340329/how-to-save-a-git-commit-message-from-windows-cmd  
+
+Расширение дерево для google chrome для работы с GIT   
+Octotree - GitHub code tree
+
