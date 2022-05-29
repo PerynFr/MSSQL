@@ -15,3 +15,7 @@ git branch --set-upstream-to=origin/main
 https://monsterlessons.com/project/lessons/git-izuchaem-komandy-pull-i-push
   
   
+git config --global --bool pull.rebase true  
+#делаем pull автоматом на последние изменения в удаленном репозитории
+  
+  
