@@ -1,4 +1,4 @@
-## MS SQL
+## :recycle: MS SQL
 
 хорошая статья с полезными скриптами по оптимизации  
 https://habr.com/ru/post/241079/
