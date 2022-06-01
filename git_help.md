@@ -14,8 +14,10 @@ Origin - это наш репозиторий и main - это ремоут ве
 git branch --set-upstream-to=origin/main  
 https://monsterlessons.com/project/lessons/git-izuchaem-komandy-pull-i-push
   
-  
+## делаем pull автоматом на последние изменения в удаленном репозитории
 git config --global --bool pull.rebase true  
-#делаем pull автоматом на последние изменения в удаленном репозитории
   
+## настраиваем merge утилиту  
+git config --global merge.tool smerge  
+git config --global mergetool.smerge.path "c:\Program Files\Sublime Merge\sublime_merge.exe"
   
