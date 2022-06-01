@@ -14,6 +14,8 @@ select file_id as FileId,Db_name(database_id) as DatabaseName, name as Logical_N
        RTRIM(LTRIM([physical_name])) AS FileName
        from sys.master_files
        where database_id = db_ID()'
+SELECT sum(FileSizeinMb) ALL_FileSizeinMb, sum(SpaceUsedinMb) ALL_SpaceUsedinMb, sum(FreeSpaceinMB) ALL_FreeSpaceinMB
+FROM @t
 SELECT file_id,
        DatabaseName,
        Logical_Name,
