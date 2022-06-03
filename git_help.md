@@ -21,3 +21,5 @@ git config --global --bool pull.rebase true
 git config --global merge.tool smerge  
 git config --global mergetool.smerge.path "c:\Program Files\Sublime Merge\sublime_merge.exe"
   
+## изменить URL удаленного репозитория  
+git remote set-url origin https://notabug.org/Peryn/temp.git  
