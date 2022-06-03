@@ -9,3 +9,6 @@ SELECT N'GRANT VIEW DEFINITION ON '
     + N' TO Bob;'
 FROM INFORMATION_SCHEMA.ROUTINES
 WHERE ROUTINE_TYPE = 'PROCEDURE';
+
+  
+  git remote add origin https://notabug.org/Peryn/repository.git
