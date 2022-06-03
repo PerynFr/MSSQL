@@ -22,4 +22,7 @@ git config --global merge.tool smerge
 git config --global mergetool.smerge.path "c:\Program Files\Sublime Merge\sublime_merge.exe"
   
 ## изменить URL удаленного репозитория  
+git remote -v   просмотреть текущий URL  
 git remote set-url origin https://notabug.org/Peryn/temp.git  
+Второй способ:  
+Отредактировать файл .git/config: секция [remote "origin"] параметр - url.  
