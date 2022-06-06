@@ -12,3 +12,4 @@ WHERE ROUTINE_TYPE = 'PROCEDURE';
 
   
   git remote add origin https://notabug.org/Peryn/repository.git
+test
