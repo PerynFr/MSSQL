@@ -15,7 +15,8 @@ select file_id as FileId,Db_name(database_id) as DatabaseName, name as Logical_N
        from sys.master_files
        where database_id = db_ID()'
 SELECT left(FileName,1) Disk, sum(FileSizeinMb) FileSizeinMb_ALL, sum(SpaceUsedinMb) SpaceUsedinMb_ALL, sum(FreeSpaceinMB) FreeSpaceinMB_ALL
-FROM @t group by left(FileName,1)
+FROM @t group by left(FileName,1) 
+--having left(FileName,1)= 'G'
 SELECT  file_id,
        DatabaseName,
        Logical_Name,
@@ -25,6 +26,7 @@ SELECT  file_id,
        replace(FreeSpaceinMB, '.', ',') FreeSpace_inMB,
        replace([%ofFreeSpace], '.', ',') [%ofFreeSpace],
        FileName
-FROM @t
+FROM @t 
+--where left(FileName,1) = 'G'
 ORDER BY FreeSpaceinMB DESC
 
