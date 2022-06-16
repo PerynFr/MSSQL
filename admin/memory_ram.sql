@@ -26,3 +26,14 @@ SELECT CASE
   (SELECT value_in_use
    FROM master.sys.configurations
    WHERE name in ('max server memory (MB)')) [Max Server Memory]
+
+/*
+sp_configure 'show advanced options', 1;
+GO
+RECONFIGURE;
+GO
+sp_configure 'max server memory', 4096; --MB
+GO
+RECONFIGURE;
+GO
+*/
