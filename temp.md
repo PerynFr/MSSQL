@@ -12,3 +12,5 @@ WHERE ROUTINE_TYPE = 'PROCEDURE';
   
   git remote add origin https://notabug.org/Peryn/repository.git
 test
+
+https://meet.vtbcapital.ru/en-US/meeting/977890499?secret=jDHPCs9qnhbkqoD.mPmvZk
