@@ -3,6 +3,8 @@ Stolen Server Memory is too high
 https://dba.stackexchange.com/questions/117001/db-engine-stolen-server-memory-is-too-high
 */
 
+DBCC MEMORYSTATUS()
+
 --% украденой памяти
 SELECT Now = GETDATE()
     ,StolenMemory = (
