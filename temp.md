@@ -1,4 +1,4 @@
-
+--https://stackoverflow.com/questions/59933512/sql-server-find-all-permissions-access-for-users-logins-for-all-databases
             DECLARE @DatabaseUserName VARCHAR(50)  -- ='user'
           , @LoginName        VARCHAR(50)  -- ='login'
 
