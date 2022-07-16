@@ -26,3 +26,7 @@ git remote -v   просмотреть текущий URL
 git remote set-url origin https://notabug.org/Peryn/temp.git  
 Второй способ:  
 Отредактировать файл .git/config: секция [remote "origin"] параметр - url.  
+
+## дать права на дирректорию проекта git текущему пользователю если ошибка  
+error: cannot open .git/FETCH_HEAD: Permission denied  
+sudo chown -R $USER: .
