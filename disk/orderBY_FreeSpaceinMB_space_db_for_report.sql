@@ -15,18 +15,22 @@ select file_id as FileId,Db_name(database_id) as DatabaseName, name as Logical_N
        from sys.master_files
        where database_id = db_ID()'
 ---------------
+--select 'Server','Disk','File Size DBs (GB)','Used Data DBs (GB)','Free Space DBs (GB)','Total Disk Size (GB)','Available Size (GB)','Disk Free %','Space Timestamp'
+--union all
 SELECT b.Server,
        b.Disk,
-       a.[File Size all DBs (MB)],
-       a.[Used Data ALL DBs (MB)],
-       a.[Free Space ALL DBs (MB)],
-       b.[Total Disk Size in (MB)],
-       b.[Disk Free %]
+       a.[File Size DBs (GB)],
+       a.[Used Data DBs (GB)],
+       a.[Free Space DBs (GB)],
+       b.[Total Disk Size (GB)],
+	   b.[Available Size (GB)],
+       b.[Disk Free %],
+	   CURRENT_TIMESTAMP [Space Timestamp]
 FROM
   (SELECT left(FileName, 1) Disk,
-          sum(FileSizeinMb) [File Size all DBs (MB)],
-          sum(SpaceUsedinMb) [Used Data ALL DBs (MB)],
-          sum(FreeSpaceinMB) [Free Space ALL DBs (MB)]
+          cast(sum(FileSizeinMb)/1024 as numeric(10,2)) [File Size DBs (GB)],
+          cast(sum(SpaceUsedinMb)/1024 as numeric(10,2)) [Used Data DBs (GB)],
+          cast(sum(FreeSpaceinMB)/1024 as numeric(10,2)) [Free Space DBs (GB)]
    FROM @t
    GROUP BY left(FileName, 1) --having left(FileName,1)= 'G'
 ) a
@@ -35,7 +39,8 @@ JOIN
                    volume_mount_point [Disk],
                    file_system_type [File System],
                    logical_volume_name AS [Logical Drive Name],
-                   CONVERT(DECIMAL(18, 2), total_bytes/1048576.0) AS [Total Disk Size in (MB)], ---1GB = 1073741824 bytes CONVERT(DECIMAL(18,2),available_bytes/1073741824.0) AS [Available Size in GB],
+                   CONVERT(DECIMAL(18, 2), total_bytes/1073741824.0) AS [Total Disk Size (GB)], ---1GB = 1073741824 bytes 
+				   CONVERT(DECIMAL(18,2),available_bytes/1073741824.0) AS [Available Size (GB)],
 CAST(CAST(available_bytes AS FLOAT)/ CAST(total_bytes AS FLOAT) AS DECIMAL(18, 2)) * 100 AS [Disk Free %]
    FROM sys.master_files CROSS APPLY sys.dm_os_volume_stats(database_id, file_id)) b ON a.Disk=left(b.Disk, 1)
 ---------------
@@ -52,4 +57,42 @@ FROM @t
 --where left(FileName,1)= 'd' --or in ('Custody_UAT_02', 'Custody_UAT_03', 'Export_UAT_02', 'Export_UAT_03')
 ORDER BY FreeSpaceinMB DESC
 
------------------
+/*
+отчет по общему и свободному месту на диске
+для отправки по почте
+*/
+SELECT har = CASE
+                 WHEN har = 'Server' THEN har +'  - - - - - - - - - -'
+                 WHEN har = 'Disk' THEN har +'  - - - - - - - - - -'
+                 WHEN har = 'Disk Free %' THEN har +' - - - - - - -'
+                 ELSE har
+             END,
+             value
+FROM
+  (SELECT b.[Server],
+          cast(b.[Disk] AS VARCHAR(255)) [Disk],
+          cast(a.[File Size DBs (GB)] AS VARCHAR(255)) [File Size DBs (GB)],
+          cast(a.[Used Data DBs (GB)] AS VARCHAR(255)) [Used Data DBs (GB)],
+          cast(a.[Free Space DBs (GB)] AS VARCHAR(255)) [Free Space DBs (GB)],
+          cast(b.[Total Disk Size (GB)] AS VARCHAR(255)) [Total Disk Size (GB)],
+          cast(b.[Available Size (GB)] AS VARCHAR(255)) [Available Size (GB)],
+          cast(b.[Disk Free %] AS VARCHAR(255)) [Disk Free %],
+          convert(VARCHAR(255), CURRENT_TIMESTAMP, 121) [Space Timestamp]
+   FROM
+     (SELECT left(FileName, 1) Disk,
+             cast(sum(FileSizeinMb)/1024 AS numeric(10, 2)) [File Size DBs (GB)],
+             cast(sum(SpaceUsedinMb)/1024 AS numeric(10, 2)) [Used Data DBs (GB)],
+             cast(sum(FreeSpaceinMB)/1024 AS numeric(10, 2)) [Free Space DBs (GB)]
+      FROM @t
+      GROUP BY left(FileName, 1)
+      HAVING left(FileName, 1)= 'G') a
+   JOIN
+     (SELECT DISTINCT CONVERT(VARCHAR(255), SERVERPROPERTY('Servername')) AS Server,
+                      cast(volume_mount_point AS VARCHAR(255)) [Disk],
+                      file_system_type [File System],
+                      logical_volume_name AS [Logical Drive Name],
+                      CONVERT(DECIMAL(18, 2), total_bytes/1073741824.0) AS [Total Disk Size (GB)], ---1GB = 1073741824 bytes
+ CONVERT(DECIMAL(18, 2), available_bytes/1073741824.0) AS [Available Size (GB)],
+ CAST(CAST(available_bytes AS FLOAT)/ CAST(total_bytes AS FLOAT) AS DECIMAL(18, 2)) * 100 AS [Disk Free %]
+      FROM sys.master_files CROSS APPLY sys.dm_os_volume_stats(database_id, file_id)) b ON a.Disk=left(b.Disk, 1)) p unpivot (value
+             FOR har in ([Server], [Disk], [File Size DBs (GB)], [Used Data DBs (GB)], [Free Space DBs (GB)], [Total Disk Size (GB)], [Available Size (GB)], [Disk Free %], [Space Timestamp])) AS upvt
