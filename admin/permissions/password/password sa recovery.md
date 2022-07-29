@@ -1,0 +1,1 @@
+https://trimech.com/blog/how-to-change-your-sql-sa-account-password
