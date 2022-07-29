@@ -30,3 +30,6 @@ git remote set-url origin https://notabug.org/Peryn/temp.git
 ## дать права на дирректорию проекта git текущему пользователю если ошибка  
 error: cannot open .git/FETCH_HEAD: Permission denied  
 sudo chown -R $USER: .
+
+## удаляем изменения из рабочей дирректории  
+git restore db.db
