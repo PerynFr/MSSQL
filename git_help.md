@@ -48,10 +48,18 @@ git remote set-url origin https://notabug.org/Peryn/temp.git
 
 ## дать права на дирректорию проекта git текущему пользователю если ошибка  
 error: cannot open .git/FETCH_HEAD: Permission denied  
-sudo chown -R $USER: .
+sudo chown -R $USER: .  
+  
+## для исключения из индекса  
+git reset HEAD CONTRIBUTING.md  
+  
+## Отмена изменений в файле  
+git checkout -- CONTRIBUTING.md  
 
 ## удаляем изменения из рабочей дирректории  
 git restore db.db  
+## Файл CONTRIBUTING.md изменен, но снова не индексирован.  
+git restore --staged CONTRIBUTING.md  
   
 ## git rm, удаляет файл из вашего рабочего каталога  
 ## Если вы изменили файл и уже проиндексировали его, вы должны использовать принудительное удаление с помощью параметра -f  
@@ -83,6 +91,7 @@ git log -p -2
 Показывает коммиты в альтернативном формате. Возможные варианты опций: oneline, short, full, fuller и format (с помощью последней   
 можно указать свой формат).  
 --oneline  
-Сокращение для одновременного использования опций --pretty=oneline --abbrev-commit.  
+Сокращение для одновременного использования опций   
+--pretty=oneline --abbrev-commit.  
 
 
