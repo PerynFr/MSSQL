@@ -1,5 +1,5 @@
-Работа с git  
-#Основы Git - Создание Git-репозитория  https://git-scm.com/book/ru/v2/%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D1%8B-Git-%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-Git-%D1%80%D0%B5%D0%BF%D0%BE%D0%B7%D0%B8%D1%82%D0%BE%D1%80%D0%B8%D1%8F  
+## Работа с git  
+# Основы Git - Создание Git-репозитория  https://git-scm.com/book/ru/v2/%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D1%8B-Git-%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-Git-%D1%80%D0%B5%D0%BF%D0%BE%D0%B7%D0%B8%D1%82%D0%BE%D1%80%D0%B8%D1%8F  
 
 # просмотреть все настройки  
 git config --list --show-origin  
@@ -24,22 +24,22 @@ Origin - это наш репозиторий и main - это ремоут ве
 git branch --set-upstream-to=origin/main  
 https://monsterlessons.com/project/lessons/git-izuchaem-komandy-pull-i-push
   
-## делаем pull автоматом на последние изменения в удаленном репозитории
+# делаем pull автоматом на последние изменения в удаленном репозитории
 git config --global --bool pull.rebase true  
   
-## настраиваем merge утилиту  
+# настраиваем merge утилиту  
 git config --global merge.tool smerge  
 git config --global mergetool.smerge.path "c:\Program Files\Sublime Merge\sublime_merge.exe"
   
-## изменить URL удаленного репозитория  
+# изменить URL удаленного репозитория  
 git remote -v   просмотреть текущий URL  
 git remote set-url origin https://notabug.org/Peryn/temp.git  
 Второй способ:  
 Отредактировать файл .git/config: секция [remote "origin"] параметр - url.  
 
-## дать права на дирректорию проекта git текущему пользователю если ошибка  
+# дать права на дирректорию проекта git текущему пользователю если ошибка  
 error: cannot open .git/FETCH_HEAD: Permission denied  
 sudo chown -R $USER: .
 
-## удаляем изменения из рабочей дирректории  
+# удаляем изменения из рабочей дирректории  
 git restore db.db
