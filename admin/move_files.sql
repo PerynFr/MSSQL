@@ -1,13 +1,22 @@
-ALTER DATABASE database_name MODIFY FILE ( NAME = logical_name, FILENAME = 'new_path\os_file_name' );
+/*
+AVC_UAT_PIF_13	AVC_PIF	ROWS	415600,00	413094,19	2505,81	1,00	I:\MSSQL\DATA\AVC_UAT_PIF_13.mdf
+AVC_UAT_PIF_13	AVC_PIF_log	LOG	600,56	43,02	557,55	93,00	I:\MSSQL\LOGS\AVC_UAT_PIF_13_log.ldf
+*/
 
-ALTER DATABASE database_name SET OFFLINE;
+ALTER DATABASE AVC_UAT_PIF_13 MODIFY FILE ( NAME = AVC_PIF, FILENAME = 'K:\MSSQL\Data\AVC_UAT_PIF_13.mdf' );
+ALTER DATABASE AVC_UAT_PIF_13 MODIFY FILE ( NAME = AVC_PIF_log, FILENAME = 'K:\MSSQL\Log\AVC_UAT_PIF_13_log.ldf' );
 
-ALTER DATABASE database_name SET OFFLINE WITH ROLLBACK IMMEDIATE;
+--ALTER DATABASE AVC_UAT_PIF_13 SET OFFLINE;
+
+ALTER DATABASE AVC_UAT_PIF_13 SET OFFLINE WITH ROLLBACK IMMEDIATE;
 
 --Переместите файл или файлы в новое расположение.
+--дайте права на файлы или используйте robocopy
 
-ALTER DATABASE database_name SET ONLINE;
+ALTER DATABASE AVC_UAT_PIF_13 SET ONLINE;
 
+
+use AVC_UAT_PIF_13
 SELECT name, physical_name AS CurrentLocation, state_desc  
 FROM sys.master_files  
 WHERE database_id = DB_ID();
