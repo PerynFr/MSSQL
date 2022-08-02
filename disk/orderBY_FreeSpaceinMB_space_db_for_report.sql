@@ -43,6 +43,7 @@ JOIN
 				   CONVERT(DECIMAL(18,2),available_bytes/1073741824.0) AS [Available Size (GB)],
 CAST(CAST(available_bytes AS FLOAT)/ CAST(total_bytes AS FLOAT) AS DECIMAL(18, 2)) * 100 AS [Disk Free %]
    FROM sys.master_files CROSS APPLY sys.dm_os_volume_stats(database_id, file_id)) b ON a.Disk=left(b.Disk, 1)
+	 order by b.[Disk Free %]
 ---------------
 SELECT  file_id,
        DatabaseName,
@@ -55,16 +56,24 @@ SELECT  file_id,
        FileName
 FROM @t 
 --where left(FileName,1)= 'd' --or in ('Custody_UAT_02', 'Custody_UAT_03', 'Export_UAT_02', 'Export_UAT_03')
+--where DatabaseName  in ('AVC_UAT_PIF_13')
 ORDER BY FreeSpaceinMB DESC
+
 
 /*
 отчет по общему и свободному месту на диске
 для отправки по почте
 */
 SELECT har = CASE
-                 WHEN har = 'Server' THEN har +'  - - - - - - - - - -'
-                 WHEN har = 'Disk' THEN har +'  - - - - - - - - - -'
-                 WHEN har = 'Disk Free %' THEN har +' - - - - - - -'
+                 WHEN har = 'Server' THEN har +'  ....................................'
+                 WHEN har = 'Disk' THEN har +'  ..............................'
+				 WHEN har = 'File Size DBs (GB)' THEN har +'  ............'
+				 WHEN har = 'Free Space DBs (GB)' THEN har +'  ............'
+				 WHEN har = 'Total Disk Size (GB)' THEN har +'  ............'
+				 WHEN har = 'Available Size (GB)' THEN har +'  ............'
+				 WHEN har = 'Used Data DBs (GB)' THEN har +'  ............'
+                 WHEN har = 'Disk Free %' THEN har +' ...................'
+				 WHEN har = 'Space Timestamp' THEN har +' .............'
                  ELSE har
              END,
              value
@@ -85,7 +94,7 @@ FROM
              cast(sum(FreeSpaceinMB)/1024 AS numeric(10, 2)) [Free Space DBs (GB)]
       FROM @t
       GROUP BY left(FileName, 1)
-      HAVING left(FileName, 1)= 'G') a
+      HAVING left(FileName, 1)= 'f') a
    JOIN
      (SELECT DISTINCT CONVERT(VARCHAR(255), SERVERPROPERTY('Servername')) AS Server,
                       cast(volume_mount_point AS VARCHAR(255)) [Disk],
