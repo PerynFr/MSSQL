@@ -94,4 +94,11 @@ git log -p -2
 Сокращение для одновременного использования опций   
 --pretty=oneline --abbrev-commit.  
 
+## Problem with win1251 encoding  
+I just added into file .git/config this lines:  
+  
+[gui]  
+        encoding = cp1251  
+
+
 
