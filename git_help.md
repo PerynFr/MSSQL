@@ -101,4 +101,40 @@ I just added into file .git/config this lines:
         encoding = cp1251  
 
 
+## перемещение дирректории git mv a folder and sub folders in windows   
+function Move-GitFolder {
+    param (
+        $target,
+        $destination
+    )
+    
+    Get-ChildItem $target -recurse |
+    Where-Object { ! $_.PSIsContainer } |
+    ForEach-Object { 
+        $fullTargetFolder = [System.IO.Path]::GetFullPath((Join-Path (Get-Location) $target))
+        $fullDestinationFolder = [System.IO.Path]::GetFullPath((Join-Path (Get-Location) $destination))
+        $fileDestination = $_.Directory.FullName.Replace($fullTargetFolder.TrimEnd('\'), $fullDestinationFolder.TrimEnd('\'))
 
+        New-Item -ItemType Directory -Force -Path $fileDestination | Out-Null
+
+        $filePath = Join-Path $fileDestination $_.Name
+
+        git mv $_.FullName $filePath
+        
+    }
+}  
+
+Применение  
+  
+Move-GitFolder <Target folder> <Destination folder>
+  
+Преимущество этого решения по сравнению с другими решениями заключается в том, что оно рекурсивно перемещает папки и файлы и даже   создает структуру папок, если она не существует.  
+  
+способ 2  
+Убедитесь, что правильный путь выбран в консоли git при выполнении команды:  
+
+- git mv Source Destination  
+При необходимости используйте:  
+
+- cd SourceFolder  
+А затем команда mv.  
