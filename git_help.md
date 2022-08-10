@@ -138,3 +138,8 @@ Move-GitFolder <Target folder> <Destination folder>
 
 - cd SourceFolder  
 А затем команда mv.  
+
+## Псевдонимы в Git   https://git-scm.com/book/ru/v2/%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D1%8B-Git-%D0%9F%D1%81%D0%B5%D0%B2%D0%B4%D0%BE%D0%BD%D0%B8%D0%BC%D1%8B-%D0%B2-Git#r_git_aliases  
+git config --global alias.c commit  
+git config --global alias.s status  
+git config --global alias.last 'log -1 HEAD'  
