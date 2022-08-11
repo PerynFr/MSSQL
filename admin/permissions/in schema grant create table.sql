@@ -1,5 +1,5 @@
---Создание таблиц в схеме
---Эта задача требует разрешения CREATE TABLE в базе данных и разрешения ALTER на схему, в которой создается таблица.
+п»ї--РЎРѕР·РґР°РЅРёРµ С‚Р°Р±Р»РёС† РІ СЃС…РµРјРµ
+--Р­С‚Р° Р·Р°РґР°С‡Р° С‚СЂРµР±СѓРµС‚ СЂР°Р·СЂРµС€РµРЅРёСЏ CREATE TABLE РІ Р±Р°Р·Рµ РґР°РЅРЅС‹С… Рё СЂР°Р·СЂРµС€РµРЅРёСЏ ALTER РЅР° СЃС…РµРјСѓ, РІ РєРѕС‚РѕСЂРѕР№ СЃРѕР·РґР°РµС‚СЃСЏ С‚Р°Р±Р»РёС†Р°.
 --https://docs.microsoft.com/ru-ru/sql/relational-databases/tables/create-tables-database-engine?view=sql-server-ver16
 /*
 ALTER AUTHORIZATION ON SCHEMA::[APPA] to [CORP\user]; 
