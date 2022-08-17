@@ -14,3 +14,6 @@ https://www.mssqltips.com/sqlservertip/1590/understanding-and-dealing-with-orpha
   
 история запросов  
 https://stackoverflow.com/questions/5299669/how-to-see-query-history-in-sql-server-management-studio
+  
+Почему вы не должны сжимать ваши файлы данных  
+https://habr.com/ru/post/330492/
