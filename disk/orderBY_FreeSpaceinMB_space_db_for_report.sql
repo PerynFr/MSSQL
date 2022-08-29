@@ -88,7 +88,8 @@ FROM
     cast(b.[Total Disk Size (GB)] AS VARCHAR(255)) [Total Disk Size (GB)],
     cast(b.[Available Size (GB)] AS VARCHAR(255)) [Available Size (GB)],
     cast(b.[Disk Free %] AS VARCHAR(255)) [Disk Free %],
-    convert(VARCHAR(255), CURRENT_TIMESTAMP, 121) [Space Timestamp]
+    convert(VARCHAR(255), CURRENT_TIMESTAMP, 121) [Space Timestamp],
+	 cast('' AS VARCHAR(255)) [ ]
   FROM
     (SELECT left(FileName, 1) Disk,
       cast(sum(FileSizeinMb)/1024 AS numeric(10, 2)) [File Size DBs (GB)],
@@ -107,4 +108,4 @@ FROM
       CONVERT(DECIMAL(18, 2), available_bytes/1073741824.0) AS [Available Size (GB)],
       CAST(CAST(available_bytes AS FLOAT)/ CAST(total_bytes AS FLOAT)*100.00 AS DECIMAL(18, 2)) AS [Disk Free %]
     FROM sys.master_files CROSS APPLY sys.dm_os_volume_stats(database_id, file_id)) b ON a.Disk=left(b.Disk, 1)) p unpivot (value
-             FOR har in ([Server], [Disk], [File Size DBs (GB)], [Used Data DBs (GB)], [Free Space DBs (GB)], [Total Disk Size (GB)], [Available Size (GB)], [Disk Free %], [Space Timestamp])) AS upvt
+             FOR har in ([Server], [Disk], [File Size DBs (GB)], [Used Data DBs (GB)], [Free Space DBs (GB)], [Total Disk Size (GB)], [Available Size (GB)], [Disk Free %], [Space Timestamp], [ ])) AS upvt
