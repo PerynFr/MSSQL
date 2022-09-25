@@ -144,3 +144,169 @@ Move-GitFolder <Target folder> <Destination folder>
 git config --global alias.c commit  
 git config --global alias.s status  
 git config --global alias.l 'log -1 HEAD'  
+
+## решаем проблему с merge
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   catalogs/price_dsv_mebel.xlsx
+        modified:   db.db
+        modified:   readme.txt
+        modified:   run as systenctl.txt
+        new file:   start.cmd
+
+Unmerged paths:
+  (use "git restore --staged <file>..." to unstage)
+  (use "git add <file>..." to mark resolution)
+        both modified:   .env
+
+
+c:\Repository\PycharmProjects\vyrok_bot>git merge
+hint: core.useBuiltinFSMonitor=true is deprecated;please set core.fsmonitor=true instead
+hint: Disable this message with "git config advice.useCoreFSMonitorConfig false"
+error: Merging is not possible because you have unmerged files.
+hint: Fix them up in the work tree, and then use 'git add/rm <file>'
+hint: as appropriate to mark resolution and make a commit.
+fatal: Exiting because of an unresolved conflict.
+
+c:\Repository\PycharmProjects\vyrok_bot>git s
+hint: core.useBuiltinFSMonitor=true is deprecated;please set core.fsmonitor=true instead
+hint: Disable this message with "git config advice.useCoreFSMonitorConfig false"
+interactive rebase in progress; onto f11cc8b
+Last command done (1 command done):
+   pick b769b91 start.cmd
+No commands remaining.
+You are currently rebasing branch 'master' on 'f11cc8b'.
+  (fix conflicts and then run "git rebase --continue")
+  (use "git rebase --skip" to skip this patch)
+  (use "git rebase --abort" to check out the original branch)
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   catalogs/price_dsv_mebel.xlsx
+        modified:   db.db
+        modified:   readme.txt
+        modified:   run as systenctl.txt
+        new file:   start.cmd
+
+Unmerged paths:
+  (use "git restore --staged <file>..." to unstage)
+  (use "git add <file>..." to mark resolution)
+        both modified:   .env
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   readme.txt
+
+
+c:\Repository\PycharmProjects\vyrok_bot>git add .
+hint: core.useBuiltinFSMonitor=true is deprecated;please set core.fsmonitor=true instead
+hint: Disable this message with "git config advice.useCoreFSMonitorConfig false"
+
+c:\Repository\PycharmProjects\vyrok_bot>git mergetool
+hint: core.useBuiltinFSMonitor=true is deprecated;please set core.fsmonitor=true instead
+hint: Disable this message with "git config advice.useCoreFSMonitorConfig false"
+No files need merging
+
+c:\Repository\PycharmProjects\vyrok_bot>git pull
+hint: core.useBuiltinFSMonitor=true is deprecated;please set core.fsmonitor=true instead
+hint: Disable this message with "git config advice.useCoreFSMonitorConfig false"
+error: cannot pull with rebase: Your index contains uncommitted changes.
+error: please commit or stash them.
+
+c:\Repository\PycharmProjects\vyrok_bot>git add .
+hint: core.useBuiltinFSMonitor=true is deprecated;please set core.fsmonitor=true instead
+hint: Disable this message with "git config advice.useCoreFSMonitorConfig false"
+
+c:\Repository\PycharmProjects\vyrok_bot>git s
+hint: core.useBuiltinFSMonitor=true is deprecated;please set core.fsmonitor=true instead
+hint: Disable this message with "git config advice.useCoreFSMonitorConfig false"
+interactive rebase in progress; onto f11cc8b
+Last command done (1 command done):
+   pick b769b91 start.cmd
+No commands remaining.
+You are currently rebasing branch 'master' on 'f11cc8b'.
+  (all conflicts fixed: run "git rebase --continue")
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   .env
+        modified:   catalogs/price_dsv_mebel.xlsx
+        modified:   db.db
+        modified:   readme.txt
+        modified:   run as systenctl.txt
+        new file:   start.cmd
+
+
+c:\Repository\PycharmProjects\vyrok_bot>git c -m "start.cmd"
+hint: core.useBuiltinFSMonitor=true is deprecated;please set core.fsmonitor=true instead
+hint: Disable this message with "git config advice.useCoreFSMonitorConfig false"
+[detached HEAD 69bafdf] start.cmd
+ 6 files changed, 78 insertions(+), 30 deletions(-)
+ create mode 100644 start.cmd
+
+c:\Repository\PycharmProjects\vyrok_bot>git push
+fatal: You are not currently on a branch.
+To push the history leading to the current (detached HEAD)
+state now, use
+
+    git push origin HEAD:<name-of-remote-branch>
+
+
+c:\Repository\PycharmProjects\vyrok_bot>git pull
+hint: core.useBuiltinFSMonitor=true is deprecated;please set core.fsmonitor=true instead
+hint: Disable this message with "git config advice.useCoreFSMonitorConfig false"
+You are not currently on a branch.
+Please specify which branch you want to rebase against.
+See git-pull(1) for details.
+
+    git pull <remote> <branch>
+
+
+c:\Repository\PycharmProjects\vyrok_bot>git push --force
+fatal: You are not currently on a branch.
+To push the history leading to the current (detached HEAD)
+state now, use
+
+    git push origin HEAD:<name-of-remote-branch>
+
+
+c:\Repository\PycharmProjects\vyrok_bot>git push origin HEAD:master --force
+Enumerating objects: 16, done.
+Counting objects: 100% (16/16), done.
+Delta compression using up to 2 threads
+Compressing objects: 100% (8/8), done.
+Writing objects: 100% (9/9), 121.50 KiB | 2.25 MiB/s, done.
+Total 9 (delta 5), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (5/5), completed with 5 local objects.
+To https://github.com/PerynFr/vyrok_bot.git
+   f11cc8b..69bafdf  HEAD -> master
+
+c:\Repository\PycharmProjects\vyrok_bot>git pull
+hint: core.useBuiltinFSMonitor=true is deprecated;please set core.fsmonitor=true instead
+hint: Disable this message with "git config advice.useCoreFSMonitorConfig false"
+You are not currently on a branch.
+Please specify which branch you want to rebase against.
+See git-pull(1) for details.
+
+    git pull <remote> <branch>
+
+
+c:\Repository\PycharmProjects\vyrok_bot>git s
+hint: core.useBuiltinFSMonitor=true is deprecated;please set core.fsmonitor=true instead
+hint: Disable this message with "git config advice.useCoreFSMonitorConfig false"
+interactive rebase in progress; onto f11cc8b
+Last command done (1 command done):
+   pick b769b91 start.cmd
+No commands remaining.
+You are currently editing a commit while rebasing branch 'master' on 'f11cc8b'.
+  (use "git commit --amend" to amend the current commit)
+  (use "git rebase --continue" once you are satisfied with your changes)
+
+nothing to commit, working tree clean
+
+c:\Repository\PycharmProjects\vyrok_bot>git rebase --continue
+hint: core.useBuiltinFSMonitor=true is deprecated;please set core.fsmonitor=true instead
+hint: Disable this message with "git config advice.useCoreFSMonitorConfig false"
+Successfully rebased and updated refs/heads/master.
+
