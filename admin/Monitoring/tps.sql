@@ -10,7 +10,7 @@ FROM sys.dm_os_performance_counters
 WHERE counter_name = 'Transactions/sec'
 AND instance_name='_Total';
 -- Following is the delay
-WAITFOR DELAY '00:01:00'
+WAITFOR DELAY '00:00:10'
 -- Second PASS
 SELECT @Second = cntr_value
 FROM sys.dm_os_performance_counters
