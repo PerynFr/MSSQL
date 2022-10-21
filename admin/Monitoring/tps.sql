@@ -1,20 +1,24 @@
---сколько транзакций произошло за последние 10 секунд
-use db
-go
+/*
+Если у вас есть несколько экземпляров на вашем сервере, вы можете запустить следующий скрипт, 
+чтобы получить представление о том, сколько транзакций произошло за последние 10 секунд во всех экземплярах.
+*/
 -- First PASS
 DECLARE @First INT
 DECLARE @Second INT
 SELECT @First = cntr_value
 FROM sys.dm_os_performance_counters
 WHERE counter_name = 'Transactions/sec'
+AND instance_name='_Total';
 -- Following is the delay
-WAITFOR DELAY '00:00:10'
+WAITFOR DELAY '00:01:00'
 -- Second PASS
 SELECT @Second = cntr_value
 FROM sys.dm_os_performance_counters
-WHERE counter_name = 'Transactions/sec';
+WHERE counter_name = 'Transactions/sec'
+AND instance_name='_Total';
 SELECT (@Second - @First) 'TotalTransactions'
 GO
+
 
 --Транзакции конкретного экземпляра
 -- First PASS
