@@ -56,6 +56,11 @@ git reset HEAD CONTRIBUTING.md
 ## Отмена изменений в файле  
 git checkout -- CONTRIBUTING.md  
 
+## Если необходимо вернуть файл до предыдущего состояни определенного коммита
+необходимо в git log найти хэш ребуемого коммита и прописать git checkout commit_hash path_to_file, где commit_hash - хэш необходимого коммита и path_to_file - путь до файла, который необходимо скинуть.
+Пример: Я добавил в коммит и отправил в удаленную ветку ненужный файл. Поэтому командой git log нашел хэш предпоследнего коммита и выполнил команду: git checkout db449e5882a85636ae9444c24ec78fe135312ee3 widgets/assets/js/main.min.js
+После чего снова запушил файл git add widgets/assets/js/main.min.js -> git commit -m 'fix min.js' -> git push origin CORE-2093. В репозитории в ПР файл откатился до начального состояния.
+
 ## удаляем изменения из рабочей дирректории  
 git restore db.db  
 ## Файл CONTRIBUTING.md изменен, но снова не индексирован.  
