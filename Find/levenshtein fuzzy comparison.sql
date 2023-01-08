@@ -80,3 +80,21 @@ b.Customer as cust,
 dbo.ufn_levenshtein(REPLACE(A.Customer, ' ', ''), REPLACE(B.Customer, ' ', '')) as ValueLev
 FROM POTENTIALCUSTOMERS a
 LEFT JOIN ExistingCustomers b ON dbo.ufn_levenshtein(REPLACE(A.Customer, ' ', ''), REPLACE(B.Customer, ' ', '')) < 15;
+
+WITH CTE(RowNbr,Customer,ID,cust,ValueLev) AS
+(
+    SELECT RANK() OVER (PARTITION BY a.Customer ORDER BY dbo.ufn_levenshtein(REPLACE(A.Customer, ' ', ''), REPLACE(B.Customer, ' ', '')) ASC) AS RowNbr,
+    A.Customer,
+    b.ID,
+    b.Customer as cust,
+    dbo.ufn_levenshtein(REPLACE(A.Customer, ' ', ''), REPLACE(B.Customer, ' ', '')) as ValueLev
+    FROM POTENTIALCUSTOMERS a
+    LEFT JOIN ExistingCustomers b ON dbo.ufn_levenshtein(REPLACE(A.Customer, ' ', ''), REPLACE(B.Customer, ' ', '')) < 15
+)
+SELECT Customer,
+MIN(ID) AS ID,
+MIN(cust) AS cust,
+ValueLev
+FROM CTE
+WHERE CTE.RowNbr = 1
+GROUP BY Customer, ValueLev;
