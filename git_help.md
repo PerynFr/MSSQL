@@ -5,8 +5,8 @@ https://git-scm.com/book/ru/v2/%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D1%8B-Git-%D0%A1%D
 # Псевдонимы в Git  
 git config --global alias.co checkout  
 git config --global alias.br branch  
-git config --global alias.ci commit  
-git config --global alias.st status  
+git config --global alias.c commit  
+git config --global alias.s status  
 https://git-scm.com/book/ru/v2/%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D1%8B-Git-%D0%9F%D1%81%D0%B5%D0%B2%D0%B4%D0%BE%D0%BD%D0%B8%D0%BC%D1%8B-%D0%B2-Git#r_git_aliases  
 
 
@@ -38,7 +38,10 @@ git config --global --bool pull.rebase true
   
 ## настраиваем merge утилиту  
 git config --global merge.tool smerge  
-git config --global mergetool.smerge.path "c:\Program Files\Sublime Merge\sublime_merge.exe"
+git config --global mergetool.smerge.path "c:\Program Files\Sublime Merge\smerge.exe"
+
+## Редактор
+git config --global core.editor "'c:\Program Files\Sublime Text\sublime_text.exe' -w"
   
 ## изменить URL удаленного репозитория  
 git remote -v   просмотреть текущий URL  
@@ -50,8 +53,11 @@ git remote set-url origin https://notabug.org/Peryn/temp.git
 error: cannot open .git/FETCH_HEAD: Permission denied  
 sudo chown -R $USER: .  
   
-## для исключения из индекса  
+## для исключения из индекса
 git reset HEAD CONTRIBUTING.md  
+
+##  Отменить локальные изменения
+git reset --hard
   
 ## Отмена изменений в файле  
 git checkout -- CONTRIBUTING.md  
@@ -314,4 +320,36 @@ c:\Repository\PycharmProjects\vyrok_bot>git rebase --continue
 hint: core.useBuiltinFSMonitor=true is deprecated;please set core.fsmonitor=true instead
 hint: Disable this message with "git config advice.useCoreFSMonitorConfig false"
 Successfully rebased and updated refs/heads/master.
+
+## работа с ветками (ветки, ветка)
+https://monsterlessons.com/project/lessons/git-uchimsya-rabotat-s-pravilnym-workflow  
+  
+короткая форма записи, которая сразу создает ветку и переходит на нее  
+
+git checkout -b develop 
+git checkout develop # если ветка уже есть ее создавать ненадо
+
+мы создали develop ветку и перешли на него. Давайте запушим ее в репозиторий  
+
+git push  
+  
+переходим на мастер и мерджим develop в мастер  
+
+git checkout master  
+
+git merge develop  
+
+git push  
+https://webdevkin.ru/courses/git/git-merge  
+
+# если не работает gitignore
+
+Чтобы отменить отслеживание одного файла, который уже был добавлен/инициализирован в ваш репозиторий, т. е. остановить отслеживание файла, но не удалять его из вашей системы, используйте:  
+git rm --cached filename  
+
+для всех файлов  
+Сначала зафиксируйте любые незавершенные изменения кода, а затем выполните эту команду:  
+git rm -r --cached  
+git add .  
+git commit -m ".gitignore is now working"  
 
