@@ -2,21 +2,26 @@
 ## Основы Git - Создание Git-репозитория  
 https://git-scm.com/book/ru/v2/%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D1%8B-Git-%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-Git-%D1%80%D0%B5%D0%BF%D0%BE%D0%B7%D0%B8%D1%82%D0%BE%D1%80%D0%B8%D1%8F  
   
-# Псевдонимы в Git  
+# Псевдонимы в Git
+```  
 git config --global alias.co checkout  
 git config --global alias.br branch  
 git config --global alias.c commit  
 git config --global alias.s status  
+```
 https://git-scm.com/book/ru/v2/%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D1%8B-Git-%D0%9F%D1%81%D0%B5%D0%B2%D0%B4%D0%BE%D0%BD%D0%B8%D0%BC%D1%8B-%D0%B2-Git#r_git_aliases  
 
 
 ## просмотреть все настройки  
+```
 git config --list --show-origin  
+```
   
 ## Имя пользователя  
+```
 git config --global user.name "PerynFr"  
 git config --global user.email johndoe@example.com  
-
+```
 настраиваем notepad вместо Vim  
 https://stackoverflow.com/questions/13340329/how-to-save-a-git-commit-message-from-windows-cmd  
 
@@ -35,7 +40,7 @@ https://monsterlessons.com/project/lessons/git-izuchaem-komandy-pull-i-push
   
 ## делаем pull автоматом на последние изменения в удаленном репозитории
 git config --global --bool pull.rebase true
-# Рекомендуется настроить Git на автоматическую перебазировку при извлечении с помощью 
+# Рекомендуется настроить Git на merges 
 git config --local pull.rebase merges
 git config --global pull.rebase merges  
   
