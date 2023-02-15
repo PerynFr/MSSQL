@@ -40,10 +40,22 @@ https://monsterlessons.com/project/lessons/git-izuchaem-komandy-pull-i-push
   
 ## делаем pull автоматом на последние изменения в удаленном репозитории
 git config --global --bool pull.rebase true
+
 # Рекомендуется настроить Git на merges 
 git config --local pull.rebase merges
 git config --global pull.rebase merges  
-  
+## если both modified: .....
+```
+git mergetool
+# применяем изменения в програме smerge
+git s
+del git_help.md.orig
+git c -m "merge"
+git rebase --continue
+git pull
+git push
+```
+
 ## настраиваем merge утилиту  
 git config --global merge.tool smerge  
 git config --global mergetool.smerge.path "c:\Program Files\Sublime Merge\smerge.exe"
