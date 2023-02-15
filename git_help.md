@@ -36,7 +36,8 @@ https://monsterlessons.com/project/lessons/git-izuchaem-komandy-pull-i-push
 ## делаем pull автоматом на последние изменения в удаленном репозитории
 git config --global --bool pull.rebase true
 # Рекомендуется настроить Git на автоматическую перебазировку при извлечении с помощью 
-git config --global pull.rebase preserve  
+git config --local pull.rebase merges
+git config --global pull.rebase merges  
   
 ## настраиваем merge утилиту  
 git config --global merge.tool smerge  
