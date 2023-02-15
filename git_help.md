@@ -34,7 +34,9 @@ git branch --set-upstream-to=origin/main
 https://monsterlessons.com/project/lessons/git-izuchaem-komandy-pull-i-push
   
 ## делаем pull автоматом на последние изменения в удаленном репозитории
-git config --global --bool pull.rebase true  
+git config --global --bool pull.rebase true
+# Рекомендуется настроить Git на автоматическую перебазировку при извлечении с помощью 
+git config --global pull.rebase preserve  
   
 ## настраиваем merge утилиту  
 git config --global merge.tool smerge  
