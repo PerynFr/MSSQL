@@ -2,7 +2,7 @@
 ## Основы Git - Создание Git-репозитория  
 https://git-scm.com/book/ru/v2/%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D1%8B-Git-%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-Git-%D1%80%D0%B5%D0%BF%D0%BE%D0%B7%D0%B8%D1%82%D0%BE%D1%80%D0%B8%D1%8F  
   
-# Псевдонимы в Git
+## Псевдонимы в Git
 ```  
 git config --global alias.co checkout  
 git config --global alias.br branch  
@@ -13,12 +13,12 @@ https://git-scm.com/book/ru/v2/%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D1%8B-Git-%D0%9F%D
 
 
 ## просмотреть все настройки  
-```
+```sh
 git config --list --show-origin  
 ```
   
 ## Имя пользователя  
-```
+```sh
 git config --global user.name "PerynFr"  
 git config --global user.email johndoe@example.com  
 ```
@@ -39,13 +39,16 @@ git branch --set-upstream-to=origin/main
 https://monsterlessons.com/project/lessons/git-izuchaem-komandy-pull-i-push
   
 ## делаем pull автоматом на последние изменения в удаленном репозитории
+```sh
 git config --global --bool pull.rebase true
-
+```
 # Рекомендуется настроить Git на merges 
+```sh
 git config --local pull.rebase merges
 git config --global pull.rebase merges  
-## если both modified: .....
 ```
+## если both modified: .....
+```sh
 git mergetool
 # применяем изменения в програме smerge
 git s
@@ -57,52 +60,73 @@ git push
 ```
 
 ## настраиваем merge утилиту  
+```sh
 git config --global merge.tool smerge  
 git config --global mergetool.smerge.path "c:\Program Files\Sublime Merge\smerge.exe"
-
+```
 ## Редактор
+```sh
+git config --global core.editor "vim"
 git config --global core.editor "'c:\Program Files\Sublime Text\sublime_text.exe' -w"
-  
+```  
 ## изменить URL удаленного репозитория  
+```sh
 git remote -v   просмотреть текущий URL  
 git remote set-url origin https://notabug.org/Peryn/temp.git  
+```
 Второй способ:  
 Отредактировать файл .git/config: секция [remote "origin"] параметр - url.  
 
 ## дать права на дирректорию проекта git текущему пользователю если ошибка  
 error: cannot open .git/FETCH_HEAD: Permission denied  
+```sh
 sudo chown -R $USER: .  
-  
+```  
 ## для исключения из индекса
+```sh
 git reset HEAD CONTRIBUTING.md  
-
+```
 ##  Отменить локальные изменения
+```sh
 git reset --hard
-  
+```  
 ## Отмена изменений в файле  
+```sh
 git checkout -- CONTRIBUTING.md  
-
+```
 ## Если необходимо вернуть файл до предыдущего состояни определенного коммита
 необходимо в git log найти хэш ребуемого коммита и прописать git checkout commit_hash path_to_file, где commit_hash - хэш необходимого коммита и path_to_file - путь до файла, который необходимо скинуть.
 Пример: Я добавил в коммит и отправил в удаленную ветку ненужный файл. Поэтому командой git log нашел хэш предпоследнего коммита и выполнил команду: git checkout db449e5882a85636ae9444c24ec78fe135312ee3 widgets/assets/js/main.min.js
-После чего снова запушил файл git add widgets/assets/js/main.min.js -> git commit -m 'fix min.js' -> git push origin CORE-2093. В репозитории в ПР файл откатился до начального состояния.
+После чего снова запушил файл 
+```sh
+git add widgets/assets/js/main.min.js || git commit -m 'fix min.js' || git push origin CORE-2093. 
+```
+В репозитории в ПР файл откатился до начального состояния.
 
 ## удаляем изменения из рабочей дирректории  
+```sh
 git restore db.db  
-## Файл CONTRIBUTING.md изменен, но снова не индексирован.  
+```
+## Файл CONTRIBUTING.md изменен, но снова не индексирован. 
+```sh 
 git restore --staged CONTRIBUTING.md  
-  
+```  
 ## git rm, удаляет файл из вашего рабочего каталога  
 ## Если вы изменили файл и уже проиндексировали его, вы должны использовать принудительное удаление с помощью параметра -f  
+```sh
 git rm temp.md -f  
 git rm "SQL decommissioning" -r  # удаляем католог рекурсивно  
-
-## отслеживание изменений  
-если вы хотите увидеть сокращенную статистику для каждого коммита, вы можете использовать опцию --stat:  
+```
+# отслеживание изменений  
+## если вы хотите увидеть сокращенную статистику для каждого коммита, вы можете использовать опцию --stat:  
+```sh
 git log --stat  
+```
 -p или --patch, который показывает разницу (выводит патч), внесенную в каждый коммит. Так же вы можете ограничить количество   
 записей в выводе команды; используйте параметр -2 для вывода только двух записей  
+```sh
 git log -p -2  
+```
 -p  
 Показывает патч для каждого коммита.  
 --stat  
@@ -132,8 +156,7 @@ I just added into file .git/config this lines:
 [gui]  
         encoding = cp1251  
 
-
-## перемещение дирректории git mv a folder and sub folders in windows   
+# перемещение дирректории git mv a folder and sub folders in windows   
 function Move-GitFolder {
     param (
         $target,
@@ -162,20 +185,23 @@ Move-GitFolder <Target folder> <Destination folder>
   
 Преимущество этого решения по сравнению с другими решениями заключается в том, что оно рекурсивно перемещает папки и файлы и даже   создает структуру папок, если она не существует.  
   
-способ 2  
-Убедитесь, что правильный путь выбран в консоли git при выполнении команды:  
-
-- git mv Source Destination  
+## способ 2  
+## Убедитесь, что правильный путь выбран в консоли git при выполнении команды:  
+```sh
+git mv Source Destination  
+```
 При необходимости используйте:  
-
-- cd SourceFolder  
+```sh
+cd SourceFolder  
+```
 А затем команда mv.  
 
-## Псевдонимы в Git   https://git-scm.com/book/ru/v2/%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D1%8B-Git-%D0%9F%D1%81%D0%B5%D0%B2%D0%B4%D0%BE%D0%BD%D0%B8%D0%BC%D1%8B-%D0%B2-Git#r_git_aliases  
+# Псевдонимы в Git   https://git-scm.com/book/ru/v2/%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D1%8B-Git-%D0%9F%D1%81%D0%B5%D0%B2%D0%B4%D0%BE%D0%BD%D0%B8%D0%BC%D1%8B-%D0%B2-Git#r_git_aliases  
+```sh
 git config --global alias.c commit  
 git config --global alias.s status  
 git config --global alias.l 'log -1 HEAD'  
-
+```
 ## решаем проблему с merge
 Changes to be committed:
   (use "git restore --staged <file>..." to unstage)
@@ -341,35 +367,36 @@ hint: core.useBuiltinFSMonitor=true is deprecated;please set core.fsmonitor=true
 hint: Disable this message with "git config advice.useCoreFSMonitorConfig false"
 Successfully rebased and updated refs/heads/master.
 
-## работа с ветками (ветки, ветка)
+# работа с ветками (ветки, ветка)
 https://monsterlessons.com/project/lessons/git-uchimsya-rabotat-s-pravilnym-workflow  
-  
-короткая форма записи, которая сразу создает ветку и переходит на нее  
-
+## короткая форма записи, которая сразу создает ветку и переходит на нее  
+```sh
 git checkout -b develop 
 git checkout develop # если ветка уже есть ее создавать ненадо
-
-мы создали develop ветку и перешли на него. Давайте запушим ее в репозиторий  
-
+```
+## мы создали develop ветку и перешли на него. Давайте запушим ее в репозиторий  
+```sh
 git push  
-  
-переходим на мастер и мерджим develop в мастер  
-
+```  
+## переходим на мастер и мерджим develop в мастер  
+```sh
 git checkout master  
-
 git merge develop  
-
 git push  
+```
 https://webdevkin.ru/courses/git/git-merge  
 
 # если не работает gitignore
 
-Чтобы отменить отслеживание одного файла, который уже был добавлен/инициализирован в ваш репозиторий, т. е. остановить отслеживание файла, но не удалять его из вашей системы, используйте:  
+## Чтобы отменить отслеживание одного файла, который уже был добавлен/инициализирован в ваш репозиторий, 
+## т. е. остановить отслеживание файла, но не удалять его из вашей системы, используйте:  
+```sh
 git rm --cached filename  
-
-для всех файлов  
-Сначала зафиксируйте любые незавершенные изменения кода, а затем выполните эту команду:  
+```
+## для всех файлов  
+## Сначала зафиксируйте любые незавершенные изменения кода, а затем выполните эту команду:  
+```sh
 git rm -r --cached  
 git add .  
 git commit -m ".gitignore is now working"  
-
+```
