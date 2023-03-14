@@ -17,3 +17,5 @@ https://stackoverflow.com/questions/5299669/how-to-see-query-history-in-sql-serv
   
 Почему вы не должны сжимать ваши файлы данных  
 https://habr.com/ru/post/330492/
+
+- [SQLServerTools](https://github.com/YPermitin/SQLServerTools)
