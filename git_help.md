@@ -1,16 +1,16 @@
+[наглядная справка](https://marklodato.github.io/visual-git-guide/index-ru.html)
 # Работа с git  
 ## Основы Git - Создание Git-репозитория  
 https://git-scm.com/book/ru/v2/%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D1%8B-Git-%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-Git-%D1%80%D0%B5%D0%BF%D0%BE%D0%B7%D0%B8%D1%82%D0%BE%D1%80%D0%B8%D1%8F  
   
 ## Псевдонимы в Git
-```  
+```sh  
 git config --global alias.co checkout  
 git config --global alias.br branch  
 git config --global alias.c commit  
 git config --global alias.s status  
 ```
 https://git-scm.com/book/ru/v2/%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D1%8B-Git-%D0%9F%D1%81%D0%B5%D0%B2%D0%B4%D0%BE%D0%BD%D0%B8%D0%BC%D1%8B-%D0%B2-Git#r_git_aliases  
-
 
 ## просмотреть все настройки  
 ```sh
@@ -95,13 +95,27 @@ git reset --hard
 git checkout -- CONTRIBUTING.md  
 ```
 ## Если необходимо вернуть файл до предыдущего состояни определенного коммита
-необходимо в git log найти хэш ребуемого коммита и прописать git checkout commit_hash path_to_file, где commit_hash - хэш необходимого коммита и path_to_file - путь до файла, который необходимо скинуть.
+необходимо в git log найти хэш ребуемого коммита и прописать 
+```sh
+git checkout commit_hash path_to_file
+```
+, где commit_hash - хэш необходимого коммита и path_to_file - путь до файла, который необходимо скинуть.
 Пример: Я добавил в коммит и отправил в удаленную ветку ненужный файл. Поэтому командой git log нашел хэш предпоследнего коммита и выполнил команду: git checkout db449e5882a85636ae9444c24ec78fe135312ee3 widgets/assets/js/main.min.js
 После чего снова запушил файл 
 ```sh
 git add widgets/assets/js/main.min.js || git commit -m 'fix min.js' || git push origin CORE-2093. 
 ```
 В репозитории в ПР файл откатился до начального состояния.
+## Как отменить (откатить) действие git pull?  https://ru.stackoverflow.com/questions/361124/%D0%9A%D0%B0%D0%BA-%D0%BE%D1%82%D0%BC%D0%B5%D0%BD%D0%B8%D1%82%D1%8C-%D0%BE%D1%82%D0%BA%D0%B0%D1%82%D0%B8%D1%82%D1%8C-%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D0%B8%D0%B5-git-pull
+```sh
+git reset --hard
+git checkout sphere
+git reflog
+# Находите хэш коммита, в котором вы находились до первого pull-а.
+# Будет что-то вроде "8f05e00 HEAD@{4}: checkout: moving from master to sphere"
+# или "4c31200 HEAD@{10}: commit: Awesome feature implemented."
+git reset --hard [нужный хэш]
+```
 
 ## удаляем изменения из рабочей дирректории  
 ```sh
