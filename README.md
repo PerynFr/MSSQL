@@ -1,3 +1,5 @@
+[![licence badge]][licence]
+
 ## :recycle: MS SQL
 
 хорошая статья с полезными скриптами по оптимизации  
@@ -19,3 +21,6 @@ https://stackoverflow.com/questions/5299669/how-to-see-query-history-in-sql-serv
 https://habr.com/ru/post/330492/
 
 - [SQLServerTools](https://github.com/YPermitin/SQLServerTools)
+
+[licence badge]:https://img.shields.io/badge/license-MIT-blue.svg
+[licence]:https://github.com/PerynFr/MSSQL/blob/master/LICENSE
