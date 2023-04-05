@@ -1,3 +1,9 @@
+[портабле версия клиента git под win и т.д. скачиваем здесь](https://git-scm.com/download/win)
+```
+создаем ярлык на консольную утилиту \git\git-cmd.exe
+прописываем в него в Start in путь к репозиторию который мы уже получили командой clone
+в Shortcut key: ярлыка биндим сочетание горячих клавиш, пример CTl+Alt+D
+```
 [наглядная справка](https://marklodato.github.io/visual-git-guide/index-ru.html)
 # Работа с git  
 ## Основы Git - Создание Git-репозитория  
