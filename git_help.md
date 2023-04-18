@@ -406,6 +406,10 @@ git checkout master
 git merge develop  
 git push  
 ```
+## удаляем локальную ветку -D Shortcut for --delete --force
+```sh
+git branch -d fix
+```
 https://webdevkin.ru/courses/git/git-merge  
 
 # если не работает gitignore
