@@ -2,6 +2,9 @@
 
 ## :recycle: MS SQL
 
+[hotkeys](https://chadbaldwin.net/2021/01/21/ssms-keyboard-query-shortcuts.html)  
+[Сочетание клавиш — передача параметра в запрос с помощью sp_executesql](https://www.sqlshack.com/custom-keyboard-shortcuts-in-sql-server-management-studio-ssms/)  
+
 хорошая статья с полезными скриптами по оптимизации  
 https://habr.com/ru/post/241079/
 
