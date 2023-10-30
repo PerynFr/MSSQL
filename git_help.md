@@ -30,6 +30,10 @@ git config --list --show-origin
 git config --global user.name "PerynFr"  
 git config --global user.email johndoe@example.com  
 ```
+## если проблемы с сертификатом
+```sh
+git config --global http.sslVerify false
+```
 настраиваем notepad вместо Vim  
 https://stackoverflow.com/questions/13340329/how-to-save-a-git-commit-message-from-windows-cmd  
 
