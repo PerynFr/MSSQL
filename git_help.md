@@ -454,6 +454,12 @@ alex@ubuntu:~/.ssh$ cat known_hosts
 и далее
 alex@ubuntu:~/.ssh$ sudo chmod 600 git_key
 alex@ubuntu:~/.ssh$ ssh-add git_key
+если ошибка:
+Could not open a connection to your authentication agent.
+то запускаем агента
+alex@ubuntu:~/.ssh$ eval `ssh-agent -s`
+
+alex@ubuntu:~/.ssh$ ssh-add git_key
 Identity added: git_key (alex@ubuntu)
 
 alex@ubuntu:~$ git clone git@github.com:PerynFr/settings.git
