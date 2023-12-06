@@ -440,7 +440,7 @@ Generating public/private rsa key pair.
 alex@ubuntu:~/.ssh$ cat git_key.pub
 добавляем всю строку ниже в git settings/ssh and GPG keys/New SSH key
 
-ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCDHTF6m8BfRHvu6s+zsCJQeDdwHqbEDX7mXsKHuRan3FnIKPHOmauuJ2kskWF85eAq/Jbynh5IcXI/o6PlzPf4e6ytb7MjZ1hEeZ7Ron1/GvW9j9cghRIZ5sq7STfwmI4bVihW439u/biH6nUo0Io4F2x9gL3t4GQo1bkq9Y13kA2DG7Q2+Isf38bwSofWdBeHJWvstA/fGx0R24NqtdvJwVUyRl4N1KXuLgFZ2wg9i2W8m1mv94KwQ/FBgFQodd7qZKn1eU1UcvyObgjcpPVC/fws5kStVmTy7Rm+M+4Gdv2gCyYWBn1h5tHec1ObQdaK0ya0VkryZ+ongK2HLCrkUwBvbPY76Umtce0OENFn9n9M78aBf7qoi/NQeDD0axPL54M2PXsahWlBhwSZuGqJ+e7MH3BVZZ/OaGmsVsqa5pvylSkn500dk0ZdnRixB04MChqTYFphSEcHHe+vSDW8hkD9aPsCXBF7I6h38IItHRRLxEpD3W301wE/SuZAiP0= alex@ubuntu
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCDHTF6m8BfRHvu6s+zsCJQeDdwHqbEDX7mXsKHtestsHOmauuJ2kskWF85eAq/Jbynh5IcXI/o6PlzPf4e6ytb7MjZ1hEeZ7Ron1/GvW9j9cghRIZ5sq7STfwmI4bVihW439u/biH6nUo0Io4F2x9gL3t4GQo1bkq9Y13kA2DG7Q2+Isf38bwSofWdBeHJWvstA/fGx0R24NqtdvJwVUyRl4N1KXuLgFZ2wg9i2W8m1mv94KwQ/FBgFQodd7qZKn1eU1UcvyObgjcpPVC/fws5kStVmTy7Rm+e0OENFn9n9M78aBf7qoi/NQeDD0axPL54M2PXsahWlBhwSZuGqJ+e7MH3BVZZ/OaGmsVsqa5pvylSkn500dk0ZdnRixB04MChqTYFphSEcHHe+vSDW8hkD9aPsCXBF7I6h38IItHRRLxEpD3W301wE/SuZAiP0= alex@ubuntu
 
 далее 
 git clone git@github.com:PerynFr/settings.git
@@ -461,4 +461,27 @@ Cloning into 'settings'...
 успех
 
 ```
+# пример для локального git
+- [инструкция по git](https://github.com/PerynFr/MSSQL/blob/master/git_help.md)
+- после установки git согласно инструкции, для создания локальной копии выполнить: 
+```sh
+git clone https://github.com/PerynFr/MSSQL.git
+```
+# Contributing
+
+- чтобы внести свой вклад: команда ниже создает ветку и сразу переходит на нее,   
+    вместо branch_name придумайте свое имя локальной ветки, после внесенных изменений запуште ее и создайте merge request с main
+```sh    
+git checkout -b branch_name
+```
+**Примечание**: *[черновая часть! для рассмотрения и обсуждения]*  
+Пожалуйста, рассмотрите возможность добавления одного из следующих префиксов в заголовок вашего запроса на включение:  
+
+- **feat**: новая функция  
+- **fix**: исправление ошибки  
+- **docs**: меняется только документация  
+- **style**: форматирование, отсутствие точек с запятой, пробелы и т. д.  
+- **refactor**: изменение кода, которое не исправляет ошибку и не добавляет новую функцию.  
+- **perf**: изменение кода, повышающее производительность.  
+
 
