@@ -430,3 +430,35 @@ git rm -r --cached
 git add .  
 git commit -m ".gitignore is now working"  
 ```
+
+## Hастройка логина в GitHub через SSH Key на Linux   
+```sh
+alex@ubuntu:~/.ssh$ ssh-keygen -f git_key
+Generating public/private rsa key pair.
+
+
+alex@ubuntu:~/.ssh$ cat git_key.pub
+добавляем всю строку ниже в git settings/ssh and GPG keys/New SSH key
+
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCDHTF6m8BfRHvu6s+zsCJQeDdwHqbEDX7mXsKHuRan3FnIKPHOmauuJ2kskWF85eAq/Jbynh5IcXI/o6PlzPf4e6ytb7MjZ1hEeZ7Ron1/GvW9j9cghRIZ5sq7STfwmI4bVihW439u/biH6nUo0Io4F2x9gL3t4GQo1bkq9Y13kA2DG7Q2+Isf38bwSofWdBeHJWvstA/fGx0R24NqtdvJwVUyRl4N1KXuLgFZ2wg9i2W8m1mv94KwQ/FBgFQodd7qZKn1eU1UcvyObgjcpPVC/fws5kStVmTy7Rm+M+4Gdv2gCyYWBn1h5tHec1ObQdaK0ya0VkryZ+ongK2HLCrkUwBvbPY76Umtce0OENFn9n9M78aBf7qoi/NQeDD0axPL54M2PXsahWlBhwSZuGqJ+e7MH3BVZZ/OaGmsVsqa5pvylSkn500dk0ZdnRixB04MChqTYFphSEcHHe+vSDW8hkD9aPsCXBF7I6h38IItHRRLxEpD3W301wE/SuZAiP0= alex@ubuntu
+
+далее 
+git clone git@github.com:PerynFr/settings.git
+
+если получаем ошибку:
+git@github.com: Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+то очищаем файл 
+alex@ubuntu:~/.ssh$ cat known_hosts
+и далее
+alex@ubuntu:~/.ssh$ sudo chmod 600 git_key
+alex@ubuntu:~/.ssh$ ssh-add git_key
+Identity added: git_key (alex@ubuntu)
+
+alex@ubuntu:~$ git clone git@github.com:PerynFr/settings.git
+Cloning into 'settings'...
+успех
+
+```
+
