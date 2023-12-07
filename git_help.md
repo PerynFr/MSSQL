@@ -433,7 +433,7 @@ git commit -m ".gitignore is now working"
 
 ## Hастройка логина в GitHub через SSH Key на Linux   
 ```sh
-alex@ubuntu:~/.ssh$ sssh-keygen -t ed25519 -f git_key -C "perynfr@github.com"
+alex@ubuntu:~/.ssh$ ssh-keygen -t ed25519 -f git_key -C "perynfr@github.com"
 Generating public/private rsa key pair.
 
 
