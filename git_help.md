@@ -96,7 +96,7 @@ sudo chown -R $USER: .
 ```  
 ## для исключения из индекса
 ```sh
-git reset HEAD CONTRIBUTING.md  
+git rm --cached log_file_info.txt   
 ```
 ##  Отменить локальные изменения
 ```sh
