@@ -45,3 +45,18 @@
 - **Безопасность:**
   При использовании SSH следует обеспечить безопасность ваших ключей и настроек SSH-сервера.
 Эти шаги помогут вам создать общий репозиторий Git в вашей локальной сети.
+
+
+### настройка ~/.ssh/config "git config -e" для "git pull" из локального репозитория
+```
+[core]
+    repositoryformat = git
+    filemode = false
+    bare = false
+    logallrefupdates = true
+    ignorecase = true
+    precomposeunicode = true
+
+[remote "origin"]
+    url = /path/to/your/local/repo
+```
