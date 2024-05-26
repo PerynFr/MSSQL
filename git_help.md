@@ -80,7 +80,20 @@ git config --global mergetool.smerge.path "c:\Program Files\Sublime Merge\smerge
 ```sh
 git config --global core.editor "vim"
 git config --global core.editor "'c:\Program Files\Sublime Text\sublime_text.exe' -w"
-```  
+```
+## добавить URL удаленного репозитория  
+```sh
+git remote -v
+git remote remove origin
+git remote add origin git@github.com:PerynFr/miner.git
+```
+елси при `git pull`
+fatal: отказ слияния несвязанных историй изменений
+тогда
+```sh
+git pull --allow-unrelated-histories
+git push
+```
 ## изменить URL удаленного репозитория  
 ```sh
 git remote -v   просмотреть текущий URL  
