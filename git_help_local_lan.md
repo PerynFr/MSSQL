@@ -17,12 +17,12 @@
    ```
    Флаг `--bare` используется для создания "голого" репозитория, который не содержит рабочей директории и используется только для хранения данных Git.
 
-2.1 **На клиенте**
-   ```bash
-   git init
-   git remote add origin root@192.168.1.50:/repository/newproject
-   git add . && git commit -m "all" && git push 
-   ```
+   2.1 **На клиенте**
+      ```bash
+      git init
+      git remote add origin root@192.168.1.50:/repository/newproject
+      git add . && git commit -m "all" && git push 
+      ```
 
 4. **Настройте доступ:**
    Вы должны решить, каким образом вы будете осуществлять доступ к репозиторию. Один из способов - использование SSH или HTTP.
