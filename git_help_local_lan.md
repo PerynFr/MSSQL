@@ -21,6 +21,7 @@
       ```bash
       git init
       git remote add origin root@192.168.1.50:/repository/newproject
+      git push --set-upstream origin master
       git add . && git commit -m "all" && git push 
       ```
 
