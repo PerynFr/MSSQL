@@ -20,7 +20,10 @@
    2.1 **На клиенте**
       ```bash
       git init
+      git add . && git commit -m "Initial commit"
       git remote add origin root@192.168.1.50:/repository/newproject
+      # если ошиблись в пути
+      git remote set-url origin root@192.168.1.50:repository/pgsyswatch_extention
       git push --set-upstream origin master
       git add . && git commit -m "all" && git push 
       ```
