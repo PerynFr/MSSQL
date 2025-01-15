@@ -27,8 +27,8 @@ git config --list --show-origin
   
 ## Имя пользователя  
 ```sh
-git config --global user.name "PerynFr"  
-git config --global user.email johndoe@example.com  
+git config --global user.name "sqlmaster"
+git config --global user.email globalalek@gmail.com  
 ```
 ## если проблемы с сертификатом
 ```sh
